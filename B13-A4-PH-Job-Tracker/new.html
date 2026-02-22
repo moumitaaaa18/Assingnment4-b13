@@ -91,6 +91,80 @@
     });
     renderJobs();
   }
+  function renderJobs() {
+    const jobList = document.getElementById("jobList");
+    const emptyState = document.getElementById("emptyState");
+
+    let filteredJobs =
+      currentTab === "all"
+        ? jobs
+        : jobs.filter(job => job.status === currentTab);
+
+    jobList.innerHTML = "";
+
+    if (filteredJobs.length === 0) {
+      emptyState.classList.remove("hidden");
+    } else {
+      emptyState.classList.add("hidden");
+    }
+
+    filteredJobs.forEach(job => {
+      jobList.innerHTML += `
+        <div class="bg-slate-800 p-4 rounded relative">
+
+          <!-- Badge -->
+          ${
+            job.status === "interview"
+              ? '<span class="absolute top-2 right-2 bg-green-600 text-xs px-2 py-1 rounded">Interview</span>'
+              : job.status === "rejected"
+              ? '<span class="absolute top-2 right-2 bg-red-600 text-xs px-2 py-1 rounded">Rejected</span>'
+              : ''
+          }
+
+          <h3 class="font-bold">${job.company}</h3>
+          <p class="text-slate-300">${job.position}</p>
+          <p class="text-sm">${job.location} • ${job.type}</p>
+          <p class="text-sm">${job.salary}</p>
+          <p class="text-sm text-slate-400 mb-3">${job.desc}</p>
+
+          <div class="flex gap-2">
+            <button
+              onclick="updateStatus(${job.id}, 'interview')"
+              class="px-3 py-1 rounded text-white transition
+                ${job.status === 'interview'
+                  ? 'bg-green-600 hover:bg-green-500'
+                  : 'bg-green-800 hover:bg-green-600'}">
+              Interview
+            </button>
+
+            <button
+              onclick="updateStatus(${job.id}, 'rejected')"
+              class="px-3 py-1 rounded text-white transition
+                ${job.status === 'rejected'
+                  ? 'bg-red-600 hover:bg-red-500'
+                  : 'bg-red-800 hover:bg-red-600'}">
+              Rejected
+            </button>
+          </div>
+        </div>
+      `;
+    });
+
+    // Dashboard counts
+    document.getElementById("totalCount").innerText = jobs.length;
+    document.getElementById("interviewCount").innerText =
+      jobs.filter(j => j.status === "interview").length;
+    document.getElementById("rejectedCount").innerText =
+      jobs.filter(j => j.status === "rejected").length;
+
+    document.getElementById("tabCount").innerText = filteredJobs.length;
+  }
+
+  renderJobs();
+</script>
+
+</body>
+</html>
 
   
     
