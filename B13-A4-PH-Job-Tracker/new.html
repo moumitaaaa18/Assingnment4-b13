@@ -37,6 +37,64 @@
     </div>
     
 
+    <!-- Available Jobs Header -->
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-semibold">Available Jobs</h2>
+      <span id="tabCount">0</span>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex gap-2 mb-6">
+      <button onclick="changeTab('all')" class="bg-blue-600 px-3 py-1 rounded">All</button>
+      <button onclick="changeTab('interview')" class="bg-slate-700 px-3 py-1 rounded">Interview</button>
+      <button onclick="changeTab('rejected')" class="bg-slate-700 px-3 py-1 rounded">Rejected</button>
+    </div>
+
+    <!-- Job Cards -->
+    <div id="jobList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="hidden text-center mt-10">
+      <img class="mx-auto w-20 mb-4"
+        src="https://cdn-icons-png.flaticon.com/512/4076/4076503.png" />
+      <h3 class="text-lg font-semibold">No jobs available</h3>
+      <p class="text-slate-400">Nothing found in this tab</p>
+    </div>
+
+  </div>
+
+<script>
+  // Job Data
+  let jobs = [
+    { id: 1, company: "Mobile First Corp", position: "React Native Developer", location: "Remote", type: "Full-time", salary: "$130k", desc: "Build mobile apps", status: "all" },
+    { id: 2, company: "WebFlow Agency", position: "Web Designer", location: "USA", type: "Part-time", salary: "$90k", desc: "Design websites", status: "all" },
+    { id: 3, company: "TechSoft", position: "Frontend Developer", location: "Remote", type: "Full-time", salary: "$110k", desc: "Frontend UI work", status: "all" },
+    { id: 4, company: "CodeLab", position: "JavaScript Developer", location: "UK", type: "Contract", salary: "$100k", desc: "JS based projects", status: "all" },
+    { id: 5, company: "NextGen", position: "UI Engineer", location: "Remote", type: "Full-time", salary: "$120k", desc: "UI systems", status: "all" },
+    { id: 6, company: "Pixel Ltd", position: "Frontend Dev", location: "Canada", type: "Part-time", salary: "$95k", desc: "Frontend tasks", status: "all" },
+    { id: 7, company: "DesignPro", position: "Web Developer", location: "Remote", type: "Full-time", salary: "$105k", desc: "Web applications", status: "all" },
+    { id: 8, company: "Appify", position: "JS Engineer", location: "USA", type: "Full-time", salary: "$115k", desc: "JavaScript apps", status: "all" }
+  ];
+
+  let currentTab = "all";
+
+  function changeTab(tab) {
+    currentTab = tab;
+    renderJobs();
+  }
+
+  function updateStatus(id, status) {
+    jobs.forEach(job => {
+      if (job.id === id) {
+        job.status = status;
+      }
+    });
+    renderJobs();
+  }
+
+  
+    
+
 
 
 
