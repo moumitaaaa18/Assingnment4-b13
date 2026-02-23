@@ -37,23 +37,23 @@
     </div>
     
 
-    <!-- Available Jobs Header -->
+    
     <div class="flex justify-between items-center mb-4">
       <h2 class="text-xl font-semibold">Available Jobs</h2>
       <span id="tabCount">0</span>
     </div>
 
-    <!-- Tabs -->
+    
     <div class="flex gap-2 mb-6">
       <button onclick="changeTab('all')" class="bg-blue-600 px-3 py-1 rounded">All</button>
       <button onclick="changeTab('interview')" class="bg-slate-700 px-3 py-1 rounded">Interview</button>
       <button onclick="changeTab('rejected')" class="bg-slate-700 px-3 py-1 rounded">Rejected</button>
     </div>
 
-    <!-- Job Cards -->
+    
     <div id="jobList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
 
-    <!-- Empty State -->
+    
     <div id="emptyState" class="hidden text-center mt-10">
       <img class="mx-auto w-20 mb-4"
         src="https://cdn-icons-png.flaticon.com/512/4076/4076503.png" />
@@ -64,7 +64,7 @@
   </div>
 
 <script>
-  // Job Data
+  
   let jobs = [
     { id: 1, company: "Mobile First Corp", position: "React Native Developer", location: "Remote", type: "Full-time", salary: "$130k", desc: "Build mobile apps", status: "all" },
     { id: 2, company: "WebFlow Agency", position: "Web Designer", location: "USA", type: "Part-time", salary: "$90k", desc: "Design websites", status: "all" },
@@ -150,7 +150,7 @@
       `;
     });
 
-    // Dashboard counts
+    
     document.getElementById("totalCount").innerText = jobs.length;
     document.getElementById("interviewCount").innerText =
       jobs.filter(j => j.status === "interview").length;
@@ -179,5 +179,3 @@
 
 
 
-
-    
